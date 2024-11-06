@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Questionário de Emergências Psiquiátricas</title>
+</head>
+<body>
+    <h1>Questionário de Emergências Psiquiátricas</h1>
+    <form id="questionario">
+        <h2>1. Pensamentos na última semana</h2>
+        <label>
+            <input type="radio" name="q1" value="1"> Nenhum pensamento de morte
+        </label><br>
+        <label>
+            <input type="radio" name="q1" value="2"> Pensamento de morte, sem planos
+        </label><br>
+        <label>
+            <input type="radio" name="q1" value="3"> Planos específicos para suicídio
+        </label><br>
+        <label>
+            <input type="radio" name="q1" value="4"> Tentativa de suicídio recente
+        </label><br>
+
+        <h2>2. Estado mental geral</h2>
+        <label>
+            <input type="radio" name="q2" value="1"> Normal, sem alterações
+        </label><br>
+        <label>
+            <input type="radio" name="q2" value="2"> Agitação leve, nervosismo
+        </label><br>
+        <label>
+            <input type="radio" name="q2" value="3"> Tristeza profunda, dificuldade de concentração
+        </label><br>
+        <label>
+            <input type="radio" name="q2" value="4"> Perigo frequente para si ou outros
+        </label><br>
+
+        <h2>3. Padrão de sono</h2>
+        <label>
+            <input type="radio" name="q3" value="1"> Dormiu 6-8 horas regularmente
+        </label><br>
+        <label>
+            <input type="radio" name="q3" value="2"> Sono irregular, mas sem grandes dificuldades
+        </label><br>
+        <label>
+            <input type="radio" name="q3" value="3"> Insônia severa ou sono induzido por substâncias
+        </label><br>
+        <label>
+            <input type="radio" name="q3" value="4"> Não consegue dormir
+        </label><br>
+
+        <h2>4. Uso de substâncias</h2>
+        <label>
+            <input type="radio" name="q4" value="1"> Não usa substâncias
+        </label><br>
+        <label>
+            <input type="radio" name="q4" value="2"> Uso social ocasional, sem prejuízo
+        </label><br>
+        <label>
+            <input type="radio" name="q4" value="3"> Uso frequente, com prejuízos no dia a dia
+        </label><br>
+        <label>
+            <input type="radio" name="q4" value="4"> Uso diário, com agitação ou agressividade
+        </label><br>
+
+        <h2>5. Alterações de humor</h2>
+        <label>
+            <input type="radio" name="q5" value="1"> Sem alterações perceptíveis
+        </label><br>
+        <label>
+            <input type="radio" name="q5" value="2"> Tristeza ou irritação leve
+        </label><br>
+        <label>
+            <input type="radio" name="q5" value="3"> Irritação frequente, dificuldade de controlar
+        </label><br>
+        <label>
+            <input type="radio" name="q5" value="4"> Agressividade severa, riscos para o paciente ou outros
+        </label><br>
+
+        <h2>6. Risco de suicídio</h2>
+        <label>
+            <input type="radio" name="q6" value="1"> Nenhum risco perceptível
+        </label><br>
+        <label>
+            <input type="radio" name="q6" value="2"> Risco leve, com pensamentos isolados
+        </label><br>
+        <label>
+            <input type="radio" name="q6" value="3"> Risco moderado, com plano de suicídio
+        </label><br>
+        <label>
+            <input type="radio" name="q6" value="4"> Risco alto, com tentativas recentes
+        </label><br>
+
+        <button type="button" onclick="calcularScore()">Calcular Pontuação</button>
+    </form>
+
+    <h2 id="resultado"></h2>
+
+    <script>
+        function calcularScore() {
+            let score = 0;
+            const respostas = document.querySelectorAll("input[type=radio]:checked");
+            
+            respostas.forEach((resposta) => {
+                score += parseInt(resposta.value);
+            });
+
+            let resultado = "";
+            if (score <= 10) {
+                resultado = "Nível de risco: Baixo";
+            } else if (score <= 15) {
+                resultado = "Nível de risco: Moderado";
+            } else if (score <= 20) {
+                resultado = "Nível de risco: Alto";
+            } else {
+                resultado = "Nível de risco: Muito Alto. Aconselha-se procurar atendimento imediato.";
+            }
+
+            document.getElementById("resultado").innerText = `Pontuação: ${score} - ${resultado}`;
+        }
+    </script>
+</body>
+</html>
